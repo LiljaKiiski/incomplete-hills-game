@@ -8,38 +8,23 @@ import java.awt.event.ComponentEvent;
 
 
 public class Main {
-	//Car with variables
-	public Car car;
-
-	//Main panel
+	public Hills hills;
 	public GraphPanel panel;
 
 	public Main(){
-		//Set car
-		car = new Car();
-                
-		//Set panels
-		panel = new GraphPanel(car);
+		hills = new Hills();
+		panel = new GraphPanel(hills);
 
-		//Set up GUI frame
-                setUpFrame();
+		int pDiv = 5;
+		int numPoints = (pDiv/Constants.SPACE)*panel.getWidth();
+		
+		hills.generateHills(pDiv, numPoints);
 
-		moveCar();
-        }
-
-	public void moveCar(){
-		//Number of points in each square
-		double pDiv = 5;
-
-		//Set graph points
-		for (int x = 0; x < (pDiv/Constants.SPACE)*panel.getWidth(); x++){
-			car.passTime();
-			panel.points.add(new MyPoint(x/pDiv, car.s));
-		}
-
-		//Paint results
+		System.out.println(hills.points);
+		System.out.println(panel.points);
+		setUpFrame();
 		panel.repaint();
-	}
+        }
 
         public void setUpFrame(){
                 JFrame f = new JFrame("Hills");

@@ -9,18 +9,17 @@ public class GraphPanel extends JPanel {
 	public int xtra;
 
 	//Reference to car
-	public Car car;
+	public Hills hills;
 
 	//Points list
 	public ArrayList<MyPoint> points;
 
-        public GraphPanel(Car car){
-        	//Points list specific to graph
-		points = new ArrayList<>();
-		this.car = car;
+        public GraphPanel(Hills hills){
+		this.hills = hills;
+		points = hills.points;
 		
 		//Extra space before graphing for text
-        	xtra = 20;
+        	xtra = 0;
 	}
 
         @Override

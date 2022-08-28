@@ -25,13 +25,15 @@ public class Hills {
 		//Default physics values
                 t = 0.1;
                 v = 0.0;
-                s = 0.0;
+                s = 10.0;
                 a = 0.0;
 
                 //Default PID values
                 kP = 1.0;
                 kI = 0.02;
                 kD = 0.25;
+
+		points = new ArrayList<>();
 	}
 
 	/** 
