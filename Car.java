@@ -31,9 +31,9 @@ public class Car {
 		a = 0.0;
 	
 		//Default PID values
-		kP = 0.9;
+		kP = 1.0;
 		kI = 0.02;
-		kD = 0.4;
+		kD = 0.25;
 
 		target = 5;
 		lastError = target - s;
