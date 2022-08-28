@@ -15,23 +15,21 @@ public class Main {
 	public GraphPanel panel;
 
 	public Main(){
-		//Set var
+		//Set car
 		car = new Car();
                 
 		//Set panels
-		panel = new GraphPanel("Time", "Position", car);
+		panel = new GraphPanel(car);
 
 		//Set up GUI frame
                 setUpFrame();
+
+		moveCar();
         }
 
 	public void moveCar(){
 		//Number of points in each square
-		double pDiv = 10;
-		
-		//Reset points
-		panel.resetPoints();
-		car.reset();
+		double pDiv = 5;
 
 		//Set graph points
 		for (int x = 0; x < (pDiv/Constants.SPACE)*panel.getWidth(); x++){
@@ -52,16 +50,8 @@ public class Main {
 		f.add(panel);
 
 	        f.setLocationRelativeTo(null);
-		f.setMinimumSize(new Dimension(600, 400));
-                f.setResizable(true);
+                f.setResizable(false);
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 f.setVisible(true);
-
-		//Add window resize listener
-		f.addComponentListener(new ComponentAdapter() {
-    			public void componentResized(ComponentEvent componentEvent) {
-				moveCar();
-    			}
-		});
         }	
 }

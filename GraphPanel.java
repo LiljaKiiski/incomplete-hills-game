@@ -7,25 +7,17 @@ public class GraphPanel extends JPanel {
 	//Extra space before starting graph
 	public int xtra;
 
-	//X and Y axis names
-	public String xAxis;
-	public String yAxis;
-
 	//Reference to car
 	public Car car;
 
 	//Points list
 	public ArrayList<MyPoint> points;
 
-        public GraphPanel(String xAxis, String yAxis, Car car){
+        public GraphPanel(Car car){
         	//Points list specific to graph
 		points = new ArrayList<>();
 		this.car = car;
 		
-		//Axis names
-		this.xAxis = xAxis;
-		this.yAxis = yAxis;
-
 		//Extra space before graphing for text
         	xtra = 20;
 	}
@@ -42,10 +34,6 @@ public class GraphPanel extends JPanel {
 		//Grid and points
                 drawGrid(g2d);
                 drawPoints(g2d);
-
-		if (yAxis.equals("Position")){
-			drawTargetLine(g2d);
-		}
         }
 
         //Draw all points in time.points
@@ -67,16 +55,7 @@ public class GraphPanel extends JPanel {
 
         //Draw initial grid base
         public void drawGrid(Graphics2D g2d){
-       		//Time text
-		g2d.setColor(Constants.BLACK);
-            	g2d.drawString(xAxis, xtra, getHeight()-5);
-
-            	//Motor Output text
-            	g2d.rotate(Math.toRadians(270));
-            	g2d.drawString(yAxis, -getHeight()+xtra, xtra-5);
-            	g2d.rotate(-Math.toRadians(270));
-
-            	g2d.setColor(Constants.GREY_LOW);
+		g2d.setColor(Constants.GREY_LOW);
 
             	//X-axis (up/down)
             	for (int x = 0; x <= getWidth(); x+=Constants.SPACE){
@@ -88,17 +67,4 @@ public class GraphPanel extends JPanel {
           		g2d.drawLine(0+xtra, x, getWidth() +xtra, x);
 		}
         }
-
-	//Draw target line if position vs. time graph
-	public void drawTargetLine(Graphics2D g2d){
-		int target_line = (int)((((double)getHeight()/Constants.SPACE)-car.target)*Constants.SPACE);
-
-                g2d.setColor(Constants.TARGET);
-                g2d.drawLine(0+xtra, target_line-xtra, getWidth() + xtra, target_line-xtra);
-	}
-
-	//Reset all points
-	public void resetPoints(){
-		points.clear();
-	}
 }
