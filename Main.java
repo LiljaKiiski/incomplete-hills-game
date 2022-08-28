@@ -14,15 +14,13 @@ public class Main {
 	public Main(){
 		hills = new Hills();
 		panel = new GraphPanel(hills);
+		setUpFrame();
 
-		int pDiv = 5;
-		int numPoints = (pDiv/Constants.SPACE)*panel.getWidth();
+		double pDiv = 5;
+		double numPoints = (pDiv/Constants.SPACE)*panel.getWidth();
 		
 		hills.generateHills(pDiv, numPoints);
 
-		System.out.println(hills.points);
-		System.out.println(panel.points);
-		setUpFrame();
 		panel.repaint();
         }
 
@@ -32,6 +30,7 @@ public class Main {
                 f.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
                 
 		f.setLayout(new GridLayout(1, 1));
+		//panel.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
 		f.add(panel);
 
 	        f.setLocationRelativeTo(null);
