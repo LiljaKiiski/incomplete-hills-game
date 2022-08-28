@@ -1,6 +1,7 @@
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 import java.util.ArrayList;
 
 public class GraphPanel extends JPanel {
@@ -34,7 +35,20 @@ public class GraphPanel extends JPanel {
 		//Grid and points
                 drawGrid(g2d);
                 drawPoints(g2d);
+		shadeHills(g2d);
         }
+
+	public void shadeHills(Graphics2D g2d){
+		g2d.setStroke(new BasicStroke(10));
+		//Draw points
+                for (int x = 0; x < points.size(); x++){
+                        MyPoint point = points.get(x);
+			double realX = point.x * Constants.SPACE + xtra;
+			double realY = getHeight() - point.y * Constants.SPACE - xtra;
+                 
+			g2d.drawLine((int)realX, (int)realY, (int)realX, getHeight());
+                }
+	}
 
         //Draw all points in time.points
         public void drawPoints(Graphics2D g2d){
