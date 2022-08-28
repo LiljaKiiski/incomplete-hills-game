@@ -1,3 +1,3 @@
-# swing-template
+# hills
 
-Game template for Java
+A game about hills
