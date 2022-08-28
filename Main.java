@@ -1,42 +1,67 @@
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.Timer;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 
 public class Main {
-    	MyKeyListener keyListener;
-    	MyMouseListener mouseListener;
-    	MyActionListener actionListener;
-    	Timer timer;
-    	MyPanel panel;
+	//Car with variables
+	public Car car;
 
-    	public Main(){
-        	keyListener = new MyKeyListener();
-        	mouseListener = new MyMouseListener();
-        	actionListener = new MyActionListener();
-        	timer = new Timer(Constants.DELAY, actionListener);
-        	panel = new MyPanel();
+	//Main panel
+	public GraphPanel panel;
 
-        	setUpFrame();
-    	}
+	public Main(){
+		//Set var
+		car = new Car();
+                
+		//Set panels
+		panel = new GraphPanel("Time", "Position", car);
 
-    	public void setUpFrame(){
-        	JFrame f = new JFrame("Swing Template");
-        	f.setIconImage(new ImageIcon("images/image.png").getImage());
-        	f.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
-        	f.setLayout(null);
+		//Set up GUI frame
+                setUpFrame();
+        }
 
-        	f.addMouseListener(mouseListener);
+	public void moveCar(){
+		//Number of points in each square
+		double pDiv = 10;
+		
+		//Reset points
+		panel.resetPoints();
+		car.reset();
 
-        	f.addKeyListener(keyListener);
-        	f.setFocusable(true);
+		//Set graph points
+		for (int x = 0; x < (pDiv/Constants.SPACE)*panel.getWidth(); x++){
+			car.passTime();
+			panel.points.add(new MyPoint(x/pDiv, car.s));
+		}
 
-        	f.add(panel);
+		//Paint results
+		panel.repaint();
+	}
 
-        	f.setLocationRelativeTo(null);
-        	f.setResizable(false);
-        	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        	f.setVisible(true);
+        public void setUpFrame(){
+                JFrame f = new JFrame("Hills");
+                f.setIconImage(new ImageIcon("images/icon_image.png").getImage());
+                f.setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
+                
+		f.setLayout(new GridLayout(1, 1));
+		f.add(panel);
 
-        	timer.start();
-    	}
+	        f.setLocationRelativeTo(null);
+		f.setMinimumSize(new Dimension(600, 400));
+                f.setResizable(true);
+                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                f.setVisible(true);
+
+		//Add window resize listener
+		f.addComponentListener(new ComponentAdapter() {
+    			public void componentResized(ComponentEvent componentEvent) {
+				moveCar();
+    			}
+		});
+        }	
 }
