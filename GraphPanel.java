@@ -38,7 +38,7 @@ public class GraphPanel extends JPanel {
         }
 
 	public void shadeHills(Graphics2D g2d){
-		g2d.setStroke(new BasicStroke(5));
+		//g2d.setStroke(new BasicStroke(5));
 		
 		//Draw points
                 for (int x = 0; x < points.size(); x++){

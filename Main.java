@@ -16,9 +16,10 @@ public class Main {
 		panel = new GraphPanel(hills);
 		setUpFrame();
 
-		double pDiv = 5;
-		double numPoints = (pDiv/Constants.SPACE)*panel.getWidth();
-		
+		double pDiv = 16;
+		//double numPoints = (pDiv/Constants.SPACE)*panel.getWidth();
+		double numPoints = panel.getWidth();
+
 		hills.generateHills(pDiv, numPoints);
 
 		panel.repaint();

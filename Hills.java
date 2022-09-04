@@ -23,7 +23,7 @@ public class Hills {
 
         public Hills(){
 		//Default physics values
-        	t = 0.1;
+        	t = 0.03;
 		v = 0.0;
 		s = 10;
 		a = 0.0;
