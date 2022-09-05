@@ -10,10 +10,14 @@ import java.awt.event.ComponentEvent;
 public class Main {
 	public Hills hills;
 	public GraphPanel panel;
+	public Board board;
+	public MyActionListener listener;
 
 	public Main(){
 		hills = new Hills();
-		panel = new GraphPanel(hills);
+		board = new Board(hills);
+		panel = new GraphPanel(hills, board);
+		listener = new MyActionListener(this, 5);
 		setUpFrame();
 
 		double pDiv = 16;
@@ -23,7 +27,8 @@ public class Main {
 		hills.generateHills(pDiv, numPoints);
 
 		panel.repaint();
-        }
+		listener.start();
+	}
 
         public void setUpFrame(){
                 JFrame f = new JFrame("Hills");

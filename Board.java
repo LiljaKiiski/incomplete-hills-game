@@ -1,18 +1,18 @@
 public class Board {
 	public Hills hills;
+	public GraphPanel graphPanel;
 
-	public int x;
-	public int y;
+	public int index;
 
 	public Board(Hills hills){
-		this.x = 0;
-		this.y = 0;
-
 		this.hills = hills;
 	}
 
 	public void move(){
+		index += 1;
 
-
+		if (index > hills.points.size()){
+			index -= 1;
+		}
 	}
 }

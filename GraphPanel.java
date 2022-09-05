@@ -8,14 +8,15 @@ public class GraphPanel extends JPanel {
 	//Extra space before starting graph
 	public int xtra;
 
-	//Reference to car
 	public Hills hills;
+	public Board board;
 
 	//Points list
 	public ArrayList<MyPoint> points;
 
-        public GraphPanel(Hills hills){
+        public GraphPanel(Hills hills, Board board){
 		this.hills = hills;
+		this.board = board;
 		points = hills.points;
 		
 		//Extra space before graphing for text
@@ -35,7 +36,19 @@ public class GraphPanel extends JPanel {
                 drawGrid(g2d);
                 drawPoints(g2d);
 		shadeHills(g2d);
+
+		//Board
+		paintBoard(g2d);
         }
+
+	public void paintBoard(Graphics2D g2d){
+		int r = 10;
+                double x = hills.points.get(board.index).x * Constants.SPACE + xtra;
+                double y = getHeight() - hills.points.get(board.index).y * Constants.SPACE - xtra;
+
+                g2d.setColor(Constants.BOARD);
+                drawPoint(g2d, x, y, r);
+	}
 
 	public void shadeHills(Graphics2D g2d){
 		//g2d.setStroke(new BasicStroke(5));
