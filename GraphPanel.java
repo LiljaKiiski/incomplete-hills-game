@@ -41,10 +41,11 @@ public class GraphPanel extends JPanel {
 		paintBoard(g2d);
         }
 
+
 	public void paintBoard(Graphics2D g2d){
 		int r = 20;
                 double x = hills.points.get(board.index).x * Constants.SPACE + xtra;
-                double y = getHeight() - hills.points.get(board.index).y * Constants.SPACE - xtra;
+                double y = getHeight() - hills.points.get(board.index).y * Constants.SPACE - xtra - (r/2);
 
                 g2d.setColor(Constants.BOARD);
                 drawPoint(g2d, x, y, r);
