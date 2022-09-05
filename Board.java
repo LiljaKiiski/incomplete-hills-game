@@ -9,10 +9,10 @@ public class Board {
 	}
 
 	public void move(){
-		index += 1;
-
-		if (index > hills.points.size()){
-			index -= 1;
+		//Move forward
+		if (index < hills.points.size()-2){
+			index += 1;
+		
 		}
 	}
 }

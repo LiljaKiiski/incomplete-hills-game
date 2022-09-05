@@ -42,7 +42,7 @@ public class GraphPanel extends JPanel {
         }
 
 	public void paintBoard(Graphics2D g2d){
-		int r = 10;
+		int r = 20;
                 double x = hills.points.get(board.index).x * Constants.SPACE + xtra;
                 double y = getHeight() - hills.points.get(board.index).y * Constants.SPACE - xtra;
 
